@@ -8,8 +8,6 @@ dependencies = [
     "pydantic>=2",
     "python-dotenv",
     "requests",
-    "faiss-cpu",
-    "sentence-transformers",
     "scikit-learn",
     "beautifulsoup4",
     "playwright",
