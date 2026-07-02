@@ -1,0 +1,21 @@
+[project]
+name = "shl-ai-assessment-recommender"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic>=2",
+    "python-dotenv",
+    "requests",
+    "faiss-cpu",
+    "sentence-transformers",
+    "scikit-learn",
+    "beautifulsoup4",
+    "playwright",
+    "lxml",
+    "google-generativeai",
+    "pytest",
+    "pytest-asyncio",
+    "httpx",
+]
