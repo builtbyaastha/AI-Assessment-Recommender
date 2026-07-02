@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Assessment Finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #10151c;
+    --surface: #171e27;
+    --surface-raised: #1d2530;
+    --border: #2a3441;
+    --text: #ede8dd;
+    --text-dim: #9aa4b1;
+    --teal: #4fa98a;
+    --gold: #c9a24b;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+
+  header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+
+  header p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+
+  main {
+    flex: 1;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 20px 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .msg {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 86%;
+    animation: rise 0.25s ease-out;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg.user { align-self: flex-end; align-items: flex-end; }
+  .msg.assistant { align-self: flex-start; align-items: flex-start; }
+
+  .bubble {
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    line-height: 1.5;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+
+  .msg.user .bubble {
+    background: var(--teal);
+    color: #0c1712;
+    border-bottom-right-radius: 3px;
+  }
+
+  .msg.assistant .bubble {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 3px;
+  }
+
+  .role-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    padding: 0 4px;
+  }
+
+  /* --- recommendation "test ticket" cards --- */
+  .tickets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+    width: 100%;
+  }
+
+  .ticket {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-left: none;
+    border-radius: 4px;
+    padding: 12px 16px 12px 20px;
+  }
+
+  .ticket::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-image: linear-gradient(var(--gold) 60%, transparent 0%);
+    background-size: 3px 10px;
+    background-repeat: repeat-y;
+  }
+
+  .ticket-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--ink);
+    background: var(--gold);
+    border-radius: 5px;
+    padding: 4px 7px;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+
+  .ticket-body { flex: 1; min-width: 0; }
+
+  .ticket-name {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .ticket a {
+    font-size: 0.78rem;
+    color: var(--teal);
+    text-decoration: none;
+  }
+  .ticket a:hover { text-decoration: underline; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 14px 16px;
+  }
+  .typing span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-dim);
+    animation: bounce 1.2s infinite ease-in-out;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.15s; }
+  .typing span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  form {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, var(--ink) 60%, transparent);
+    padding: 24px 20px 22px;
+  }
+
+  .input-row {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 6px 6px 18px;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+  }
+  input[type="text"]::placeholder { color: var(--text-dim); }
+
+  button {
+    background: var(--teal);
+    color: #0c1712;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  button:disabled { opacity: 0.5; cursor: default; }
+  button:hover:not(:disabled) { opacity: 0.88; }
+
+  button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .empty-hint {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    margin-top: 40px;
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Assessment Finder</h1>
+  <p>Describe the role you're hiring for — I'll pull a shortlist from the SHL catalog.</p>
+</header>
+
+<main id="thread">
+  <div class="empty-hint" id="hint">
+    Try: "Hiring a mid-level Java developer who works closely with stakeholders"
+  </div>
+</main>
+
+<form id="composer">
+  <div class="input-row">
+    <input type="text" id="input" placeholder="Describe the role or ask a question…" autocomplete="off" />
+    <button type="submit" id="send">Send</button>
+  </div>
+</form>
+
+<script>
+  const thread = document.getElementById('thread');
+  const hint = document.getElementById('hint');
+  const form = document.getElementById('composer');
+  const input = document.getElementById('input');
+  const sendBtn = document.getElementById('send');
+
+  let history = [];
+
+  function scrollDown() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+
+  function renderMessage(role, content) {
+    const wrap = document.createElement('div');
+    wrap.className = `msg ${role}`;
+    const label = document.createElement('div');
+    label.className = 'role-label';
+    label.textContent = role === 'user' ? 'You' : 'Assessment Finder';
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.textContent = content;
+    wrap.appendChild(label);
+    wrap.appendChild(bubble);
+    thread.appendChild(wrap);
+    return wrap;
+  }
+
+  function renderTickets(msgWrap, recommendations) {
+    if (!recommendations || recommendations.length === 0) return;
+    const box = document.createElement('div');
+    box.className = 'tickets';
+    recommendations.forEach(rec => {
+      const ticket = document.createElement('div');
+      ticket.className = 'ticket';
+      ticket.innerHTML = `
+        <div class="ticket-code">${rec.test_type}</div>
+        <div class="ticket-body">
+          <div class="ticket-name">${rec.name}</div>
+          <a href="${rec.url}" target="_blank" rel="noopener">View on SHL catalog ↗</a>
+        </div>
+      `;
+      box.appendChild(ticket);
+    });
+    msgWrap.appendChild(box);
+  }
+
+  function renderTyping() {
+    const wrap = document.createElement('div');
+    wrap.className = 'msg assistant';
+    wrap.id = 'typing-indicator';
+    wrap.innerHTML = `
+      <div class="role-label">Assessment Finder</div>
+      <div class="bubble typing"><span></span><span></span><span></span></div>
+    `;
+    thread.appendChild(wrap);
+    scrollDown();
+  }
+
+  function removeTyping() {
+    const el = document.getElementById('typing-indicator');
+    if (el) el.remove();
+  }
+
+  async function sendMessage(text) {
+    if (hint) hint.remove();
+
+    history.push({ role: 'user', content: text });
+    renderMessage('user', text);
+    scrollDown();
+
+    input.value = '';
+    input.disabled = true;
+    sendBtn.disabled = true;
+    renderTyping();
+
+    try {
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+      const data = await res.json();
+      removeTyping();
+
+      history.push({ role: 'assistant', content: data.reply });
+      const wrap = renderMessage('assistant', data.reply);
+      renderTickets(wrap, data.recommendations);
+      scrollDown();
+    } catch (err) {
+      removeTyping();
+      renderMessage('assistant', 'Something went wrong reaching the server. Please try again.');
+      scrollDown();
+    } finally {
+      input.disabled = false;
+      sendBtn.disabled = false;
+      input.focus();
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    sendMessage(text);
+  });
+
+  input.focus();
+</script>
+
+</body>
+</html>

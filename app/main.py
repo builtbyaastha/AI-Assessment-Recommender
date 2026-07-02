@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import logging
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 
 from app.api.routes import router
 from app.catalog.catalog_loader import get_catalog
@@ -13,6 +15,8 @@ from app.retrieval.retriever import Retriever
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
+
+STATIC_DIR = Path(__file__).resolve().parent / "static"
 
 
 @asynccontextmanager
@@ -29,3 +33,10 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="SHL Assessment Recommender", lifespan=lifespan)
 app.include_router(router)
+
+
+@app.get("/")
+async def serve_frontend():
+    # simple chat UI so the deployed URL isn't just a bare 404 - the
+    # /health and /chat contract underneath is unaffected
+    return FileResponse(STATIC_DIR / "index.html")
