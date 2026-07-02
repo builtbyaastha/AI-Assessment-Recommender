@@ -694,5 +694,148 @@
     "remote_testing": false,
     "adaptive_irt": false,
     "duration_minutes": null
+  },
+  {
+    "id": "shl-verify-interactive-inductive-reasoning",
+    "name": "SHL Verify Interactive - Inductive Reasoning",
+    "url": "https://www.shl.com/products/product-catalog/view/shl-verify-interactive-inductive-reasoning/",
+    "test_type": [
+      "A"
+    ],
+    "description": "Evaluates ability to identify specific patterns in data or situations and generalize that information to broader contexts.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
+  },
+  {
+    "id": "verify-inductive-reasoning-2014",
+    "name": "Verify - Inductive Reasoning (2014)",
+    "url": "https://www.shl.com/products/product-catalog/view/verify-inductive-reasoning-2014/",
+    "test_type": [
+      "A"
+    ],
+    "description": "Inductive Reasoning is a test used for job candidates applying to jobs at all levels that require logical reasoning ability, dealing with new concepts and approaches, and resolving complex and ambiguous problems.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
+  },
+  {
+    "id": "verify-deductive-reasoning",
+    "name": "Verify - Deductive Reasoning",
+    "url": "https://www.shl.com/products/product-catalog/view/verify-deductive-reasoning/",
+    "test_type": [
+      "A"
+    ],
+    "description": "Measures the ability to draw logical conclusions based on information provided, identify strengths and weaknesses of arguments, and complete scenarios using incomplete information.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": 18
+  },
+  {
+    "id": "shl-verify-interactive-deductive-reasoning",
+    "name": "SHL Verify Interactive - Deductive Reasoning",
+    "url": "https://www.shl.com/products/product-catalog/view/shl-verify-interactive-deductive-reasoning/",
+    "test_type": [
+      "A"
+    ],
+    "description": "Measures the ability to draw logical conclusions based on information provided, identify strengths and weaknesses of arguments, and complete scenarios using incomplete information, in an interactive format.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
+  },
+  {
+    "id": "python-new",
+    "name": "Python (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/python-new",
+    "test_type": [
+      "K"
+    ],
+    "description": "Python knowledge and skills test. Multiple-choice assessment of Python proficiency for technical hiring.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
+  },
+  {
+    "id": "javascript-new",
+    "name": "JavaScript (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/javascript-new/",
+    "test_type": [
+      "K"
+    ],
+    "description": "JavaScript knowledge and skills test. Multiple-choice assessment of JavaScript proficiency for technical hiring.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
+  },
+  {
+    "id": "customer-service-phone-simulation",
+    "name": "Customer Service Phone Simulation",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/customer-service-phone-simulation",
+    "test_type": [
+      "S"
+    ],
+    "description": "Customer Service Phone Simulation simulation. Hands-on, job-realistic simulation exercise assessing practical Customer Service Phone Simulation skills.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
+  },
+  {
+    "id": "occupational-personality-questionnaire-opq32r",
+    "name": "Occupational Personality Questionnaire OPQ32r",
+    "url": "https://www.shl.com/products/product-catalog/view/occupational-personality-questionnaire-opq32r/",
+    "test_type": [
+      "P"
+    ],
+    "description": "One of the most widely used and respected measures of workplace behavioural style in the world, providing a clear framework for understanding the impact of personality on job performance.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
+  },
+  {
+    "id": "java-8-new",
+    "name": "Java 8 (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/java-8-new/",
+    "test_type": [
+      "K"
+    ],
+    "description": "Multi-choice test that measures the knowledge of Java class design, exceptions, generics, collections, concurrency, JDBC and Java I/O fundamentals.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
+  },
+  {
+    "id": "core-java-advanced-level-new",
+    "name": "Core Java (Advanced Level) (New)",
+    "url": "https://www.shl.com/products/product-catalog/view/core-java-advanced-level-new/",
+    "test_type": [
+      "K"
+    ],
+    "description": "Multi-choice test that measures the knowledge of basic Java constructs, OOP concepts, files and exception handling, and advanced Java concepts like generics, collections, threads, strings and concurrency.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
+  },
+  {
+    "id": "core-java-entry-level-new",
+    "name": "Core Java (Entry Level) (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/core-java-entry-level-new/",
+    "test_type": [
+      "K"
+    ],
+    "description": "Multi-choice test that measures the knowledge of basic Java constructs, OOP concepts, file handling, exception handling, threads, generic class and inner class.",
+    "job_levels": [],
+    "remote_testing": false,
+    "adaptive_irt": false,
+    "duration_minutes": null
   }
 ]
