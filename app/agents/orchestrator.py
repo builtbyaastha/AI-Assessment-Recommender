@@ -76,7 +76,7 @@ async def handle_chat(
         return ChatResponse(reply=reply, recommendations=[], end_of_conversation=False)
 
     candidates = retriever.search(context, top_k=20)
-    shortlist = rerank(candidates, context, max_results=5)
+    shortlist = rerank(candidates, context)
 
     is_refine = context.intent == Intent.refine or _prior_recommendation_made(messages)
     reply = recommendation_agent.generate_reply(shortlist, context, is_refine=is_refine)
